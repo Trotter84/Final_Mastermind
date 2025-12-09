@@ -1,15 +1,15 @@
 public enum KeyPeg {
     RED {
         public String getPeg() {
-            return Color._RED + Color._BLACK_BG + " ⦿ " + Color._RESET;
+            return ColorList.RED + ColorList.BLACK_BG + " ⦿ " + ColorList.RESET;
         }
     }, WHITE {
         public String getPeg() {
-            return Color._BLACK_BG + " ⦿ " + Color._RESET;
+            return ColorList.BLACK_BG + " ⦿ " + ColorList.RESET;
         }
     }, BLANK {
         public String getPeg() {
-            return Color._BLACK_BG + "  " + Color._RESET;
+            return ColorList.BLACK_BG + "  " + ColorList.RESET;
         }
     };
 
