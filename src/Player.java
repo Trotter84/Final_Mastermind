@@ -4,31 +4,36 @@ import java.util.Scanner;
 public class Player {
 
     private static int[] guess = new int[4];
+    private Peg pegs = new Peg();
+
+    public Player() {
+        setGuess(guess);
+    }
 
     public void setGuess(int[] guess) {
-        this.guess = guess;
+        promptForGuess("Choose four code pegs.", pegs);
     }
 
     public int[] getGuess() {
         return guess;
     }
 
-    public static int[] promptForGuess(String prompt, String colors) {
+    public static int[] promptForGuess(String prompt, Peg pegs) {
         Scanner scanner = new Scanner(System.in);
         String input = "";
-        int num = -1;
+        int num = 0;
         boolean isInvalid = true;
 
         do {
             System.out.println(prompt);
-            System.out.println(colors);
-            System.out.println(ColorList.BLACK_BG + " 1  2  3  4  5  6 " + ColorList.RESET);
-            for (int i = 0; i < 5; i++) {
+            System.out.println(pegs);
+//            System.out.println(ColorList.BLACK_BG + " 1  2  3  4  5  6 " + ColorList.RESET);
+            for (int i = 0; i < guess.length; i++) {
                 System.out.print("> ");
                 try {
                     input = scanner.nextLine();
                     num = Integer.parseInt(input);
-                    isInvalid = num < 0 || num > 6;
+                    isInvalid = num < 0 || num > 6 && guess.length == 4;
                 } catch (NumberFormatException nfe) {
                     System.out.println("Your input was not a valid whole number. Please, try again.");
                 }
@@ -44,6 +49,10 @@ public class Player {
 
     @Override
     public String toString() {
-        return "" + getGuess();
+        String guessValue = "";
+        for (int i : getGuess()) {
+            guessValue += " " + i + " ";
+        }
+        return "Guess:" + guessValue;
     }
 }
